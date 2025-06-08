@@ -1,0 +1,30 @@
+# Este archivo se encargará de compilar y desplegar tu aplicación Angular
+# en Firebase Hosting cada vez que hagas un 'git push' a la rama 'main'.
+
+name: Despliegue a Firebase Hosting (desde Main) # Nombre del flujo de trabajo
+on:
+  push:
+    branches:
+      - main # <--- ¡IMPORTANTE! Cambiamos 'y' por 'main' aquí.
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Puedes usar '20' o '22' (versión LTS estable)
+      - name: Instalar dependencias y Compilar Angular
+        run: |
+          npm ci
+          export NODE_OPTIONS=--openssl-legacy-provider # Soluciona el problema de OpenSSL
+          ./node_modules/.bin/ng build --configuration=production # Compila la aplicación Angular
+      - name: Desplegar en Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PROYEYYCTO1 }}'
+          projectId: proyeyycto1
+          channelId: live # Desplegará directamente a tu sitio en vivo
