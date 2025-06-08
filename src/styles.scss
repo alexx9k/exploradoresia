@@ -1,0 +1,19 @@
+/* Importa la fuente "Press Start 2P" de Google Fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Opcional: Reiniciar algunos estilos básicos del navegador para consistencia */
+
+html,
+body {
+    height: 100%; // Asegura que html y body ocupen toda la altura de la ventana
+    margin: 0; // Elimina el margen por defecto del body
+    padding: 0; // Elimina el padding por defecto del body
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    /* Aplica la fuente a todo el texto del cuerpo de la página */
+    -webkit-font-smoothing: antialiased; // Mejora el suavizado de la fuente en navegadores basados en WebKit (Chrome, Safari)
+    -moz-osx-font-smoothing: grayscale; // Mejora el suavizado de la fuente en Firefox (especialmente en macOS)
+}
